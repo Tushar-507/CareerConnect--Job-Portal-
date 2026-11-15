@@ -2,8 +2,23 @@
 
 A job board built with Next.js (App Router), PostgreSQL and Prisma.
 
-- **Candidates** browse jobs, apply (with an optional cover letter) and track
-  their application status.
+## 🔗 Live demo
+
+**<https://careerconnect-five-bay.vercel.app>**
+
+Deployed on Vercel with a Neon Postgres database.
+
+Try it with the demo accounts:
+
+| Role | Email | Password |
+| --- | --- | --- |
+| Recruiter | `priya.recruiter@example.com` | `RecruiterPass123` |
+| Candidate | `amit.candidate@example.com` | `CandidatePass123` |
+
+## Features
+
+- **Candidates** browse jobs, apply (with an optional cover letter and resume
+  link) and track their application status.
 - **Recruiters** set up a company profile, post/close/delete jobs, and move
   applications through a status workflow.
 
@@ -130,3 +145,8 @@ Then run `npm run db:deploy`.
 
 Set `DATABASE_URL` and `SESSION_SECRET` in the hosting environment, run
 `npm run db:deploy` against the production database, then `npm run build`.
+
+This project is live on Vercel (<https://careerconnect-five-bay.vercel.app>)
+using the Neon Postgres integration from the Vercel Marketplace. Pushes to
+`main` deploy automatically, and `postinstall` runs `prisma generate` during
+the build.
