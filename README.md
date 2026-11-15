@@ -150,3 +150,18 @@ This project is live on Vercel (<https://careerconnect-five-bay.vercel.app>)
 using the Neon Postgres integration from the Vercel Marketplace. Pushes to
 `main` deploy automatically, and `postinstall` runs `prisma generate` during
 the build.
+
+---
+
+## ⭐ Support
+
+If you like this project, please consider giving it a **star** on GitHub — it
+really helps and keeps the motivation going!
+
+<div align="center">
+
+**[⭐ Star this repository](https://github.com/Tushar-507/CareerConnect--Job-Portal-)**
+
+Made with ❤️ by [Tushar](https://github.com/Tushar-507)
+
+</div>
