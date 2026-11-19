@@ -17,8 +17,8 @@ Try it with the demo accounts:
 
 ## Features
 
-- **Candidates** browse jobs, apply (with an optional cover letter and resume
-  link) and track their application status.
+- **Candidates** browse jobs, apply (with a required resume link and an
+  optional cover letter) and track their application status.
 - **Recruiters** set up a company profile, post/close/delete jobs, and move
   applications through a status workflow.
 
@@ -104,9 +104,10 @@ user from the database.
 
 - No email verification or password reset yet — accounts are usable right after
   registration.
-- Resume upload is not implemented. Candidates can attach a **resume link**
-  (Drive, Dropbox, portfolio, LinkedIn) and an optional cover letter, both
-  stored as text and shown to the recruiter.
+- Resume upload is not implemented. Applying requires a **resume link**
+  (Drive, Dropbox, portfolio, LinkedIn), which is validated to be an
+  `http`/`https` URL; the cover letter stays optional. Both are stored as text
+  and shown to the recruiter.
 - `ADMIN` exists in the `UserRole` enum but is reserved: registration only
   allows candidate/recruiter accounts, and no admin screens exist yet.
 - Rate limiting is per process (see above), so it is not shared across

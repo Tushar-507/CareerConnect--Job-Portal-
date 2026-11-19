@@ -39,7 +39,14 @@ export async function POST(request) {
     const coverLetter = cleanString(body.coverLetter, MAX_COVER_LETTER_LENGTH);
     const resumeUrl = cleanString(body.resumeUrl, MAX_RESUME_URL_LENGTH);
 
-    if (resumeUrl && !isValidUrl(resumeUrl)) {
+    if (!resumeUrl) {
+      return NextResponse.json(
+        { message: "A resume link is required to apply for this job." },
+        { status: 400 }
+      );
+    }
+
+    if (!isValidUrl(resumeUrl)) {
       return NextResponse.json(
         {
           message:

@@ -127,6 +127,16 @@ export default function JobsClient({
       return;
     }
 
+    const resumeUrl = (resumeLinks[jobId] || "").trim();
+
+    if (!resumeUrl) {
+      setMessages((previous) => ({
+        ...previous,
+        [jobId]: "Please add a resume link before applying.",
+      }));
+      return;
+    }
+
     setApplyingJobId(jobId);
     setMessages((previous) => ({ ...previous, [jobId]: "" }));
 
@@ -139,7 +149,7 @@ export default function JobsClient({
         body: JSON.stringify({
           jobId,
           coverLetter: coverLetters[jobId] || "",
-          resumeUrl: resumeLinks[jobId] || "",
+          resumeUrl,
         }),
       });
 
@@ -295,9 +305,37 @@ export default function JobsClient({
                     {job.description}
                   </p>
 
+                  <label
+                    htmlFor={`resume-link-${job.id}`}
+                    className="mb-1 block text-sm font-medium text-slate-700"
+                  >
+                    Resume link <span className="text-red-500">*</span>
+                  </label>
+
+                  <input
+                    id={`resume-link-${job.id}`}
+                    type="url"
+                    required
+                    maxLength={500}
+                    value={resumeLinks[job.id] || ""}
+                    onChange={(event) =>
+                      setResumeLinks((previous) => ({
+                        ...previous,
+                        [job.id]: event.target.value,
+                      }))
+                    }
+                    placeholder="https://drive.google.com/your-resume"
+                    className="w-full rounded-lg border border-slate-300 p-2 text-sm outline-none focus:border-indigo-600"
+                  />
+
+                  <p className="mb-4 mt-2 text-xs text-slate-500">
+                    Required. Share a public link (Google Drive, Dropbox,
+                    portfolio, LinkedIn) so the recruiter can open your resume.
+                  </p>
+
                   <details className="mb-4 rounded-lg border border-slate-200 p-3 text-sm">
                     <summary className="cursor-pointer font-medium text-slate-700">
-                      Add a cover letter and resume link (optional)
+                      Add a cover letter (optional)
                     </summary>
 
                     <textarea
@@ -313,33 +351,6 @@ export default function JobsClient({
                       placeholder="Why are you a great fit for this role?"
                       className="mt-3 w-full rounded-lg border border-slate-300 p-2 outline-none focus:border-indigo-600"
                     />
-
-                    <label
-                      htmlFor={`resume-link-${job.id}`}
-                      className="mt-4 block font-medium text-slate-700"
-                    >
-                      Resume link
-                    </label>
-
-                    <input
-                      id={`resume-link-${job.id}`}
-                      type="url"
-                      maxLength={500}
-                      value={resumeLinks[job.id] || ""}
-                      onChange={(event) =>
-                        setResumeLinks((previous) => ({
-                          ...previous,
-                          [job.id]: event.target.value,
-                        }))
-                      }
-                      placeholder="https://drive.google.com/your-resume"
-                      className="mt-1 w-full rounded-lg border border-slate-300 p-2 outline-none focus:border-indigo-600"
-                    />
-
-                    <p className="mt-2 text-xs text-slate-500">
-                      Share a public link (Google Drive, Dropbox, portfolio,
-                      LinkedIn). Recruiters will see it with your application.
-                    </p>
                   </details>
 
                   <button
