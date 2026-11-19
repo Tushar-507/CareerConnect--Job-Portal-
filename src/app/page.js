@@ -29,7 +29,7 @@ async function getFeaturedJobs() {
       orderBy: {
         createdAt: "desc",
       },
-      take: 3,
+      take: 6,
     });
   } catch (error) {
     // The landing page must still render when the database is unreachable.
